@@ -235,10 +235,6 @@ jobs:
             fi
             echo "branch_existed=true" >> "$GITHUB_OUTPUT"
           else
-            if [[ "${PATCH}" != "0" ]]; then
-              echo "::error::Release branch '${RELEASE_BRANCH}' does not exist on origin, but the latest stable release '${LATEST_TAG}' has patch=${PATCH} (>0). This is inconsistent."
-              exit 1
-            fi
             echo "Release branch '${RELEASE_BRANCH}' does not exist. Creating from ${LATEST_TAG}."
             git checkout -B "${RELEASE_BRANCH}" "refs/tags/${LATEST_TAG}"
             echo "branch_existed=false" >> "$GITHUB_OUTPUT"
